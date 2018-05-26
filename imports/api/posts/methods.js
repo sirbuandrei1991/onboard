@@ -1,5 +1,6 @@
 import {Meteor} from 'meteor/meteor'
 import {Posts} from '/db';
+import {Comments} from '/db';
 
 Meteor.methods({
     'post.create'(post) {
@@ -38,6 +39,9 @@ Meteor.methods({
 
     'comment.add' (comment) {
         console.log('a ajuns in methods // comments');
-        //return Comments.insert(comment);
-    }
+        return Comments.insert(comment);
+    },
+    'comment.list' () {
+        return Comments.find().fetch();
+    },
 });

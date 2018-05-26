@@ -6,17 +6,22 @@ import { AutoForm, AutoField, Select, LongTextField, HiddenField, ErrorsField } 
 export default class PostView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {post: null};
+        this.state = {
+            posts: [],
+            comments: []
+          };
     }
     componentDidMount() {
         Meteor.call('post.get', this.props.match.params._id, (err, post) => {
             this.setState({post});
         });
+        Meteor.call('comment.list', (err, comments) => {
+            this.setState({comments});
+        });
     }
 
     submitcomments = (comment) => {
         Meteor.call('comment.add', comment, (err) => {
-            console.log(comment);
             if (err) {
                 return alert(err);
             }
@@ -27,7 +32,8 @@ export default class PostView extends React.Component {
     render() {
         const {history} = this.props;
         const {post} = this.state;
-
+        const {comments} = this.state;
+        console.log(this.state);
         if (!post) {
             return <div>Loading....</div>
         }
@@ -59,7 +65,14 @@ export default class PostView extends React.Component {
                     </AutoForm>
                     </div>
                     <div className="vizualizare-comentarii">
-
+                    {
+                        comments.map((comment) => {
+                            return (
+                                <div className="comment" key={comment.postId}>
+                                    <p>Comment title: <span>{comment.title}</span> </p>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

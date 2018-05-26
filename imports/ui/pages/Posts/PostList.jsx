@@ -34,7 +34,7 @@ export default class PostList extends React.Component {
                                     <p>Post created at: <span>{post.createdAt}</span></p>
                                     <button onClick={() => {
                                         history.push("/posts/edit/" + post._id)
-                                    }}> Edit post
+                                        }}> Edit post
                                     </button>
                                     <button onClick={() => history.push('/posts/view/' + post._id)}>View Post</button>
                                 </div>
