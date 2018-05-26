@@ -37,10 +37,12 @@ Meteor.methods({
         return Posts.findOne(_id);
     },
 
-    'comment.add' (postId,comment) {
+    'comment.add' (comment) {
+        console.log(comment);
         return Comments.insert(comment);
     },
-    'comment.list' (postId) {
-        return Comments.find().fetch();
+
+    'comment.get' (id_post , _id) {
+        return Comments.find({postId:id_post}).fetch();
     },
 });

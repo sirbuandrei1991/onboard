@@ -15,7 +15,7 @@ export default class PostView extends React.Component {
         Meteor.call('post.get', this.props.match.params._id, (err, post) => {
             this.setState({post});
         });
-        Meteor.call('comment.list', (err, comments) => {
+        Meteor.call('comment.get', this.props.match.params._id, (err, comments) => {
             this.setState({comments});
         });
     }
@@ -33,7 +33,6 @@ export default class PostView extends React.Component {
         const {history} = this.props;
         const {post} = this.state;
         const {comments} = this.state;
-        console.log(this.state);
         if (!post) {
             return <div>Loading....</div>
         }
@@ -68,7 +67,9 @@ export default class PostView extends React.Component {
                     {
                         comments.map((comment) => {
                             return (
-                                <div className="comment" key={comment.postId}>
+                                <div className="comment" key={comment._id}>
+                                    <p>Comment post id: {comment.postId}</p>
+                                    <p>Comment id: {comment._id}</p>
                                     <p>Title: <span>{comment.title}</span> </p>
                                     <p>Comment: <span>{comment.description}</span> </p>
                                 </div>

@@ -35,7 +35,6 @@ class PostListReactive extends React.Component {
     }
 }
 
-
 export default withTracker(props => {
     const handle = Meteor.subscribe('posts');
 
