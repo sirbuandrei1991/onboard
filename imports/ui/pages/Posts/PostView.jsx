@@ -69,7 +69,8 @@ export default class PostView extends React.Component {
                         comments.map((comment) => {
                             return (
                                 <div className="comment" key={comment.postId}>
-                                    <p>Comment title: <span>{comment.title}</span> </p>
+                                    <p>Title: <span>{comment.title}</span> </p>
+                                    <p>Comment: <span>{comment.description}</span> </p>
                                 </div>
                             )
                         })}

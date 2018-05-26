@@ -37,11 +37,10 @@ Meteor.methods({
         return Posts.findOne(_id);
     },
 
-    'comment.add' (comment) {
-        console.log('a ajuns in methods // comments');
+    'comment.add' (postId,comment) {
         return Comments.insert(comment);
     },
-    'comment.list' () {
+    'comment.list' (postId) {
         return Comments.find().fetch();
     },
 });

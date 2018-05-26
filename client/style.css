@@ -110,3 +110,11 @@ p.homepage-links a:hover {
     background-color: black;
     transition: 0.3s;
 }
+.vizualizare-comentarii .comment {
+    border: 2px solid black;
+    margin: 10px 0;
+    padding: 20px;
+}
+.vizualizare-comentarii .comment p {
+    margin:0;
+}
